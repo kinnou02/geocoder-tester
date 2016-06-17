@@ -118,8 +118,10 @@ normalize_pattern = re.compile('[^\w]')
 
 def compare_values(get, expected):
     if CONFIG['LOOSE_COMPARE']:
-        return normalize(get) == normalize(expected)
-    return get == expected
+        return normalize(get).startswith(normalize(expected))
+    #return get == expected
+    return get.startswith(expected)
+
 
 
 def assert_search(query, expected, limit=1,
